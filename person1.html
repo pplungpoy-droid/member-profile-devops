@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Person 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0e0c09;
+    --surface: #1a1610;
+    --surface-2: #211b12;
+    --gold: #cba463;
+    --gold-bright: #e6c98a;
+    --gold-dim: #7a6237;
+    --text: #efe6d2;
+    --text-dim: #a89a7d;
+    --line: #3d3320;
+    --line-soft: #2a2317;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(203, 164, 99, 0.10), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(203, 164, 99, 0.06), transparent),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans Thai', sans-serif;
+    line-height: 1.8;
+    padding: 0 0 60px;
+  }
+
+  h1, h2{
+    font-family: 'Noto Serif Thai', serif;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .container{
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 34px;
+    padding: 22px 6vw;
+    background: rgba(14, 12, 9, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line-soft);
+    margin-bottom: 70px;
+  }
+
+  nav a{
+    position: relative;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    color: var(--text-dim);
+    padding-bottom: 6px;
+    transition: color 0.3s ease;
+  }
+
+  nav a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  nav a:hover{ color: var(--text); }
+  nav a:hover::after{ width: 100%; }
+
+  nav a.active{ color: var(--gold-bright); }
+  nav a.active::after{ width: 100%; }
+
+  .profile{
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .profile .ring{
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    margin: 0 auto 26px;
+    padding: 4px;
+    background: linear-gradient(160deg, var(--gold-bright), var(--gold-dim));
+  }
+
+  .profile img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: var(--surface);
+  }
+
+  .eyebrow{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .eyebrow::before,
+  .eyebrow::after{
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .profile h1{
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    background: linear-gradient(100deg, var(--gold-bright) 0%, var(--text) 45%, var(--text) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .profile .nickname{
+    margin-top: 12px;
+    color: var(--text-dim);
+    font-size: 0.98rem;
+  }
+
+  .ornament-rule{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 50px 0;
+  }
+
+  .ornament-rule::before,
+  .ornament-rule::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+  }
+
+  .ornament-rule span{
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--gold-dim);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  h2.section-heading{
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
+    color: var(--gold-bright);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  h2.section-heading::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .info-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+  }
+
+  .info-grid .cell{
+    padding: 22px 16px;
+    text-align: center;
+    border-right: 1px solid var(--line);
+    background: var(--surface);
+  }
+
+  .info-grid .cell:last-child{ border-right: none; }
+
+  .info-grid .label{
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .info-grid .value{
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.05rem;
+    color: var(--text);
+  }
+
+  .favorite-block{
+    margin-bottom: 56px;
+  }
+
+  .favorite-block h3{
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    margin: 0 0 20px;
+  }
+
+  .favorite-row{
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .favorite-item{
+    position: relative;
+    flex: 1 1 0;
+    min-width: 150px;
+    background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--line);
+    padding: 22px 16px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .favorite-item:hover{
+    transform: translateY(-6px);
+    border-color: var(--gold-dim);
+    box-shadow: 0 18px 30px -18px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(203, 164, 99, 0.08);
+  }
+
+  .favorite-item span{
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  footer{
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  footer a{ color: var(--gold); }
+  footer a:hover{ color: var(--gold-bright); }
+
+  @media (max-width: 640px){
+    nav{ gap: 18px; flex-wrap: wrap; }
+    .info-grid{ grid-template-columns: repeat(2, 1fr); }
+    .info-grid .cell:nth-child(2){ border-right: none; }
+  }
+
+  :focus-visible{
+    outline: 1px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .favorite-item{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">หน้าหลัก</a>
+  <a href="person1.html" class="active">Person 1</a>
+  <a href="person2.html">Person 2</a>
+  <a href="person3.html">Person 3</a>
+</nav>
+
+<div class="container">
+
+  <div class="profile">
+    <div class="ring">
+      <img src="https://www.lannapoly.ac.th/online/Stu_picture/67219010040.jpg" alt="รูปโปรไฟล์">
+    </div>
+    <p class="eyebrow">ข้อมูลส่วนตัว</p>
+    <h1>ศุภกร ลุงติ๊บ</h1>
+    <p class="nickname">กร &nbsp;·&nbsp; 67219010040 &nbsp;·&nbsp; IT3102</p>
+  </div>
+
+  <div class="ornament-rule"><span></span></div>
+
+  <section>
+    <h2 class="section-heading">ข้อมูลทั่วไป</h2>
+    <div class="info-grid">
+      <div class="cell">
+        <span class="label">ชื่อ-นามสกุล</span>
+        <span class="value">นายศุภกร ลุงติ๊บ</span>
+      </div>
+      <div class="cell">
+        <span class="label">ชื่อเล่น</span>
+        <span class="value">กร</span>
+      </div>
+      <div class="cell">
+        <span class="label">รหัสนักศึกษา</span>
+        <span class="value">67219010040</span>
+      </div>
+      <div class="cell">
+        <span class="label">ชั้นปี</span>
+        <span class="value">ปวช.3</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="ornament-rule"><span></span></div>
+
+  <section>
+    <h2 class="section-heading">ความชอบ</h2>
+
+    <div class="favorite-block">
+      <h3>อาหารที่ชอบ</h3>
+      <div class="favorite-row">
+        <div class="favorite-item"><span>ไก่ทอด</span></div>
+        <div class="favorite-item"><span>ข้าวขาหมู</span></div>
+        <div class="favorite-item"><span>ไข่พะโล้</span></div>
+        <div class="favorite-item"><span>ก๋วยเตี๋ยว</span></div>
+        <div class="favorite-item"><span>แก้งส้ม</span></div>
+      </div>
+    </div>
+
+    <div class="favorite-block">
+      <h3>สัตว์เลี้ยงที่ชอบ</h3>
+      <div class="favorite-row">
+        <div class="favorite-item"><span>นก</span></div>
+        <div class="favorite-item"><span>แมว</span></div>
+        <div class="favorite-item"><span>ปลา</span></div>
+        <div class="favorite-item"><span>สุนัข</span></div>
+        <div class="favorite-item"><span>ไก่</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    หน้าเพื่อนในกลุ่ม: <a href="person2.html">person2.html</a> &nbsp;·&nbsp; <a href="person3.html">person3.html</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
