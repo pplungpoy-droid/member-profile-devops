@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Person 2 - เจ้าพายุ ลุวปอย</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a120f;
+    --surface: #101a16;
+    --surface-2: #16211b;
+    --accent: #cfd6d2;
+    --accent-bright: #e8ede9;
+    --jade: #6f9c86;
+    --jade-dim: #3f5a4c;
+    --text: #e9efe9;
+    --text-dim: #8fa298;
+    --line: #253128;
+    --line-soft: #1a231e;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background:
+      radial-gradient(ellipse 70% 45% at 0% 0%, rgba(111, 156, 134, 0.10), transparent),
+      radial-gradient(ellipse 60% 50% at 100% 100%, rgba(207, 214, 210, 0.05), transparent),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans Thai', sans-serif;
+    line-height: 1.8;
+  }
+
+  h1, h2{
+    font-family: 'Noto Serif Thai', serif;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5vw;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .topbar .mark{
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--jade);
+  }
+
+  .topbar nav{
+    display: flex;
+    gap: 30px;
+  }
+
+  .topbar nav a{
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .topbar nav a:hover{ color: var(--text); }
+
+  .topbar nav a.active{
+    color: var(--accent-bright);
+    border-color: var(--jade);
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 0;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  .sidebar{
+    padding: 64px 3vw 60px 5vw;
+    border-right: 1px solid var(--line-soft);
+  }
+
+  .sidebar .frame{
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--jade-dim);
+    padding: 10px;
+    margin-bottom: 28px;
+  }
+
+  .sidebar .frame img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--surface);
+  }
+
+  .sidebar .tag{
+    color: var(--jade);
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+  }
+
+  .sidebar h1{
+    font-size: 1.9rem;
+    line-height: 1.35;
+    color: var(--accent-bright);
+    margin-bottom: 18px;
+  }
+
+  .fact-list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .fact-list .row{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+    font-size: 0.9rem;
+  }
+
+  .fact-list .row .k{ color: var(--text-dim); }
+  .fact-list .row .v{ color: var(--text); font-weight: 500; }
+
+  /* ---------- Content ---------- */
+  .content{
+    padding: 64px 5vw 80px 4vw;
+  }
+
+  .section-label{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--jade);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 30px;
+  }
+
+  .section-label::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .favorite-block{
+    margin-bottom: 54px;
+  }
+
+  .favorite-block .title{
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .favorite-block .count{
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 22px;
+    display: block;
+  }
+
+  .favorite-row{
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (min-width: 641px){
+    .favorite-row{
+      flex-direction: row;
+      overflow-x: auto;
+    }
+  }
+
+  .favorite-item{
+    flex: 1 1 0;
+    min-width: 150px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    transition: border-color 0.3s ease, padding-left 0.3s ease;
+  }
+
+  @media (min-width: 641px){
+    .favorite-item{
+      border-bottom: none;
+      border-right: 1px solid var(--line);
+      padding: 4px 18px;
+    }
+    .favorite-item:last-child{ border-right: none; }
+  }
+
+  .favorite-item:hover{
+    border-color: var(--jade);
+  }
+
+  .favorite-item .num{
+    display: block;
+    font-size: 0.72rem;
+    color: var(--jade-dim);
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+  }
+
+  .favorite-item:hover .num{ color: var(--jade); }
+
+  .favorite-item .name{
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+
+  footer{
+    padding: 30px 5vw;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    text-align: right;
+  }
+
+  footer a{ color: var(--jade); }
+  footer a:hover{ color: var(--accent-bright); }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns: 1fr; }
+    .sidebar{
+      border-right: none;
+      border-bottom: 1px solid var(--line-soft);
+      padding: 48px 6vw;
+    }
+    .sidebar .frame{ max-width: 260px; margin-left: auto; margin-right: auto; }
+    .content{ padding: 48px 6vw; }
+  }
+
+  @media (max-width: 640px){
+    .topbar{ flex-direction: column; gap: 14px; }
+    .topbar nav{ gap: 18px; flex-wrap: wrap; justify-content: center; }
+    footer{ text-align: center; }
+  }
+
+  :focus-visible{
+    outline: 1px solid var(--jade);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .favorite-item{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="mark">เจ้าพายุ ลุงปอย</span>
+  <nav>
+    <a href="index.html">หน้าหลัก</a>
+    <a href="person1.html">Person 1</a>
+    <a href="person2.html" class="active">Person 2</a>
+    <a href="person3.html">Person 3</a>
+  </nav>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="frame">
+      <img src="https://www.lannapoly.ac.th/online/Stu_picture/67219010038.jpg" alt="รูปโปรไฟล์">
+    </div>
+    <p class="tag">ข้อมูลส่วนตัว</p>
+    <h1>เจ้าพายุ<br>ลุวปอย</h1>
+
+    <div class="fact-list">
+      <div class="row"><span class="k">ชื่อเล่น</span><span class="v">พี</span></div>
+      <div class="row"><span class="k">รหัสนักศึกษา</span><span class="v">67219010038</span></div>
+      <div class="row"><span class="k">ชั้นปี</span><span class="v">ปวช.3</span></div>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <div class="favorite-block">
+      <p class="section-label">ความชอบ</p>
+      <span class="title">เพลงที่ชอบ</span>
+      <span class="count">5 รายการ</span>
+      <div class="favorite-row">
+        <div class="favorite-item"><span class="num">01</span><span class="name">Just the Way You Are</span></div>
+        <div class="favorite-item"><span class="num">02</span><span class="name">Grenade</span></div>
+        <div class="favorite-item"><span class="num">03</span><span class="name">Locked Out of Heaven</span></div>
+        <div class="favorite-item"><span class="num">04</span><span class="name">That's What I Like</span></div>
+        <div class="favorite-item"><span class="num">05</span><span class="name">When I Was Your Man</span></div>
+      </div>
+    </div>
+
+    <div class="favorite-block">
+      <span class="title">หนังผีที่ชอบ</span>
+      <span class="count">5 รายการ</span>
+      <div class="favorite-row">
+        <div class="favorite-item"><span class="num">01</span><span class="name">The Conjuring</span></div>
+        <div class="favorite-item"><span class="num">02</span><span class="name">Insidious</span></div>
+        <div class="favorite-item"><span class="num">03</span><span class="name">The Nun</span></div>
+        <div class="favorite-item"><span class="num">04</span><span class="name">Annabelle</span></div>
+        <div class="favorite-item"><span class="num">05</span><span class="name">Sinister</span></div>
+      </div>
+    </div>
+
+  </main>
+
+</div>
+
+<footer>
+  หน้าเพื่อนในกลุ่ม: <a href="person1.html">person1.html</a>  ·  <a href="person3.html">person3.html</a>
+</footer>
+
+</body>
+</html>
