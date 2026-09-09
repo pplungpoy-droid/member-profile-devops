@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Person 3 - ภูมิพัฒน์ ชอบดี</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #170c0f;
+    --surface: #241318;
+    --surface-2: #2c171d;
+    --rose: #caa2a0;
+    --rose-bright: #ecd0cb;
+    --rose-dim: #6b4046;
+    --text: #f1e7e2;
+    --text-dim: #ab8e8a;
+    --line: #3c2128;
+    --line-soft: #291720;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background:
+      radial-gradient(ellipse 70% 45% at 100% 0%, rgba(202, 162, 160, 0.10), transparent),
+      radial-gradient(ellipse 55% 40% at 0% 100%, rgba(107, 64, 70, 0.12), transparent),
+      var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans Thai', sans-serif;
+    line-height: 1.8;
+  }
+
+  h1, h2{
+    font-family: 'Noto Serif Thai', serif;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  /* ---------- Navigation ---------- */
+  nav{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 26px 6vw 0;
+  }
+
+  nav a{
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+
+  nav a:hover{ color: var(--text); border-color: var(--line); }
+
+  nav a.active{
+    color: var(--rose-bright);
+    border-color: var(--rose-dim);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: center;
+    max-width: 980px;
+    margin: 60px auto 0;
+    padding: 0 6vw;
+  }
+
+  .hero .portrait{
+    aspect-ratio: 3 / 4;
+    border: 1px solid var(--rose-dim);
+    padding: 8px;
+  }
+
+  .hero .portrait img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--surface);
+  }
+
+  .hero .eyebrow{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--rose);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 16px;
+  }
+
+  .hero .eyebrow::before{
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: var(--rose-dim);
+  }
+
+  .hero h1{
+    font-size: clamp(2.1rem, 5vw, 3.1rem);
+    line-height: 1.35;
+    background: linear-gradient(100deg, var(--rose-bright) 0%, var(--text) 50%, var(--text) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .fact-strip{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    margin-top: 24px;
+  }
+
+  .fact-strip .fact{
+    font-size: 0.92rem;
+  }
+
+  .fact-strip .fact .k{
+    color: var(--text-dim);
+    margin-right: 6px;
+  }
+
+  .fact-strip .fact .v{
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ---------- Favorites: ticket row ---------- */
+  main{
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 70px 6vw 90px;
+  }
+
+  .section-label{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--rose);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 34px;
+  }
+
+  .section-label::before,
+  .section-label::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .ticket-row{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+    background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+  }
+
+  .ticket{
+    position: relative;
+    padding: 30px 20px;
+    text-align: center;
+    border-right: 1px dashed var(--line);
+  }
+
+  .ticket:last-child{ border-right: none; }
+
+  .ticket::before,
+  .ticket::after{
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg);
+    right: -7px;
+  }
+
+  .ticket::before{ top: -7px; }
+  .ticket::after{ bottom: -7px; }
+
+  .ticket:last-child::before,
+  .ticket:last-child::after{ display: none; }
+
+  .ticket .icon{
+    font-size: 1.4rem;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .ticket .label{
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--rose);
+    margin-bottom: 12px;
+  }
+
+  .ticket .value{
+    font-family: 'Noto Serif Thai', serif;
+    font-size: 1.1rem;
+    color: var(--text);
+  }
+
+  footer{
+    text-align: center;
+    padding: 30px 6vw;
+    border-top: 1px solid var(--line-soft);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+
+  footer a{ color: var(--rose); }
+  footer a:hover{ color: var(--rose-bright); }
+
+  @media (max-width: 700px){
+    .hero{ grid-template-columns: 1fr; text-align: center; }
+    .hero .portrait{ max-width: 220px; margin: 0 auto; }
+    .fact-strip{ justify-content: center; }
+    .ticket-row{ grid-template-columns: repeat(2, 1fr); }
+    .ticket{ border-right: 1px dashed var(--line); border-bottom: 1px dashed var(--line); }
+    .ticket:nth-child(2n){ border-right: none; }
+  }
+
+  :focus-visible{
+    outline: 1px solid var(--rose);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">หน้าหลัก</a>
+  <a href="person1.html">Person 1</a>
+  <a href="person2.html">Person 2</a>
+  <a href="person3.html" class="active">Person 3</a>
+</nav>
+
+<div class="hero">
+  <div class="portrait">
+    <img src="https://lh3.googleusercontent.com/chat_attachment/AP1Ws4uO32fdAw9BqBVxX58HwD-7_P7cCMny7tASx-W92hBqMo97x-aIGew3S-0qZFsVBr8BQb89_CvPB9r615Z7MrtVdhDUPXq-rmFLZsRXgtjS1djr6sM6_K0SHhPbUfV9BE95JatGAXxju3dgw3zqIFNPypxAO6ptqBeazUCld42xnI0ajyHrPZk-aR5tZTpXx6oCgKkVyQaF_196-xVOusebQQWQVuQ2Ga9GVfzsBI1BQzD4AH7cbpVhfYJk7Wwq0Q1YJ3zi1AjJC6xi79vZdXGAoSKvLUEd8QWy-ATqq-RYlZ0671jv1JEXaAkzsjz8sEM=w958-h910-rw" alt="รูปโปรไฟล์">
+  </div>
+  <div>
+    <p class="eyebrow">ประวัติส่วนตัว</p>
+    <h1>นายภูมิพัฒน์ ชอบดี</h1>
+    <div class="fact-strip">
+      <span class="fact"><span class="k">ชื่อเล่น</span><span class="v">ต้นน้ำ</span></span>
+      <span class="fact"><span class="k">รหัสนักศึกษา</span><span class="v">67219010067</span></span>
+      <span class="fact"><span class="k">ชั้นปี</span><span class="v">ปวช.3</span></span>
+      <span class="fact"><span class="k">สาขา</span><span class="v">เทคโนโลยีสารสนเทศ</span></span>
+    </div>
+  </div>
+</div>
+<!--  -->
+<main>
+  <p class="section-label">สัตว์เลี้ยงที่ฉันชอบ</p>
+
+  <div class="ticket-row">
+    <div class="ticket">
+      <span class="icon"> 🐕</span>
+      <span class="label">1</span>
+      <span class="value">หมา</span>
+    </div>
+    <div class="ticket">
+      <span class="icon"> 😼</span>
+      <span class="label">2</span>
+      <span class="value">แมว</span>
+    </div>
+    <div class="ticket">
+      <span class="icon">🦛</span>
+      <span class="label">3</span>
+      <span class="value">ฮิปโปโปเตมัส</span>
+    </div>
+    <div class="ticket">
+      <span class="icon">🐇</span>
+      <span class="label">4</span>
+      <span class="value">กระต่าย</span>
+    </div>
+  </div>
+</main>
+<main>
+  <p class="section-label">หนังที่ชอบ</p>
+
+  <div class="ticket-row">
+    <div class="ticket">
+      <span class="icon">🎬</span>
+      <span class="label">1</span>
+      <span class="value">โกฮังหัวใจโกโฮม</span>
+    </div>
+    <div class="ticket">
+      <span class="icon">🎬</span>
+      <span class="label">2</span>
+      <span class="value">Harry Potter</span>
+    </div>
+    <div class="ticket">
+      <span class="icon">🎬</span>
+      <span class="label">3</span>
+      <span class="value">สาธุ</span>
+    </div>
+    <div class="ticket">
+      <span class="icon">🎬</span>
+      <span class="label">4</span>
+      <span class="value">เวนส์เดย์</span>
+    </div>
+  </div>
+</main>
+
+<footer>
+  © 2026 นายภูมิพัฒน์ ชอบดี  ·  หน้าเพื่อนในกลุ่ม:
+  <a href="person1.html">person1.html</a>  ·  <a href="person2.html">person2.html</a>
+</footer>
+
+</body>
+</html>
